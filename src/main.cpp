@@ -26,5 +26,54 @@ SOFTWARE.
 
 int main()
 {
+    int choise;
+    std::string strForChoise;
+    std::string delimiter = "|____________________________________________________________|\n\n";
+
+    //enum type for better code readability
+    enum{ exit, login, noPassword, registerSys };
+
+    mainMenu(strForChoise, choise);
+    std::cout << delimiter;
+
+    //all the options
+    while(choise > exit)
+    {
+        if(choise == login)
+        {
+            //implement the login logic
+            mainMenu(strForChoise, choise);
+            std::cout << delimiter;
+        }
+        else if(choise == noPassword)
+        {
+            //implement the password recovery mode
+            mainMenu(strForChoise, choise);
+            std::cout << delimiter;
+        }
+        else if(choise == registerSys)
+        {
+            //implement the logic of registration
+            mainMenu(strForChoise, choise);
+            std::cout << delimiter;
+        }
+        else
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                       Invalid Input                        |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
+
+            mainMenu(strForChoise, choise);
+            std::cout << delimiter;
+        }
+    }
+
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "|                                                            |" << std::endl
+                << "|                   The program is stopped                   |" << std::endl
+                << "|____________________________________________________________|" << std::endl;
+
     return  0;
 }

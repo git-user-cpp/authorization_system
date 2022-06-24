@@ -24,4 +24,7 @@ SOFTWARE.
 
 #pragma once
 #include <iostream>
+#include <string>
+#include <sstream>
 
+void mainMenu(std::string &str, int &choise);
