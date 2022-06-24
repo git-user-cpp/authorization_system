@@ -27,4 +27,5 @@ SOFTWARE.
 #include <string>
 #include <sstream>
 
+//main menu function
 void mainMenu(std::string &str, int &choise);
