@@ -24,6 +24,7 @@ SOFTWARE.
 
 #include "menu.hpp"
 
+//main menu function
 void mainMenu(std::string &str, int &choise)
 {
     std::cout   << " ____________________________________________________________" << std::endl
