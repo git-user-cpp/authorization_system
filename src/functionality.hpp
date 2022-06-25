@@ -26,3 +26,6 @@ SOFTWARE.
 #include "menu.hpp"
 
 //declare functions for connection with postgresql
+
+//function for DB connection
+void connectDB(const std::vector<std::string> &vec);

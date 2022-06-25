@@ -24,4 +24,9 @@ cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(Authorisation)
 
+set(CMAKE_CXX_STANDART 11)
+
 add_executable(Authorisation src/main.cpp src/menu.cpp src/functionality.cpp)
+
+#NEED TO FIX -> DOES NOT COMPILING THE PROJECT -> LINKING FAILED
+#target_compile_options(${PROJECT_NAME} PRIVATE -lpqxx -lpq)
