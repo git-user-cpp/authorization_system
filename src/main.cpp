@@ -51,7 +51,10 @@ int main()
         }
         else if(choise == registerSys)
         {
-            //implement the password recovery mode
+            registerMenu(email, passwd);
+
+            //implement database connection and password hashing (postgresql)
+
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }

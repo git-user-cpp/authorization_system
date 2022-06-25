@@ -56,9 +56,52 @@ void mainMenu(std::string &str, int &choise)
 void loginMenu(std::string &email, std::string &passwd)
 {
 
-    std::cout << "Enter your email: ";
-    std::cin >> email;
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter your email: ";
+    getline(std::cin, email);
+    std::cout   << "|____________________________________________________________" << std::endl;
 
-    std::cout << "Enter your password:";
-    std::cin >> passwd;
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter your password:";
+    getline(std::cin, passwd);
+    std::cout   << "|____________________________________________________________" << std::endl;
+}
+
+//register menu function
+void registerMenu(std::string &email, std::string &passwd)
+{
+    std::string confirm;
+
+ifNotSuccess:
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter your email: ";
+    getline(std::cin, email);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter new password:";
+    getline(std::cin, passwd);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Confirm new password:";
+    getline(std::cin, confirm);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    if(passwd == confirm)
+    {
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|              You are successfully registered!              |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
+    }
+    else
+    {
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|                      Please try again                      |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
+        goto ifNotSuccess;
+    }
 }
