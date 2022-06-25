@@ -23,3 +23,5 @@ SOFTWARE.
 */
 
 #include "functionality.hpp"
+
+//implement functions for connection with postgresql

@@ -60,7 +60,7 @@ int main()
         }
         else if(choise == noPassword)
         {
-            //implement the logic of registration
+            //implement password reset logic
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
@@ -75,7 +75,6 @@ int main()
             std::cout << delimiter;
         }
     }
-
 
     std::cout   << " ____________________________________________________________" << std::endl
                 << "|                                                            |" << std::endl

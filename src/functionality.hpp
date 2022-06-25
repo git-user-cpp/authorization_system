@@ -24,3 +24,5 @@ SOFTWARE.
 
 #pragma once
 #include "menu.hpp"
+
+//declare functions for connection with postgresql
