@@ -29,3 +29,6 @@ SOFTWARE.
 
 //main menu function
 void mainMenu(std::string &str, int &choise);
+
+//login menu function
+void loginMenu(std::string &email, std::string &passwd);

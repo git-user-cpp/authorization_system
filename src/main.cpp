@@ -28,10 +28,11 @@ int main()
 {
     int choise;
     std::string strForChoise;
+    std::string email, passwd;
     std::string delimiter = "|____________________________________________________________|\n\n";
 
     //enum type for better code readability
-    enum{ exit, login, noPassword, registerSys };
+    enum{ exit, login, registerSys, noPassword };
 
     mainMenu(strForChoise, choise);
     std::cout << delimiter;
@@ -41,17 +42,20 @@ int main()
     {
         if(choise == login)
         {
-            //implement the login logic
+            loginMenu(email, passwd);
+
+            //implement database connection and password hashing (postgresql)
+
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
-        else if(choise == noPassword)
+        else if(choise == registerSys)
         {
             //implement the password recovery mode
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
-        else if(choise == registerSys)
+        else if(choise == noPassword)
         {
             //implement the logic of registration
             mainMenu(strForChoise, choise);
