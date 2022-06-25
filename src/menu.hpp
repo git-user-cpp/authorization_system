@@ -26,6 +26,10 @@ SOFTWARE.
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
+#define test //uncomment to get the debug info
+
+#include <pqxx/pqxx>
 
 //main menu function
 void mainMenu(std::string &str, int &choise);
