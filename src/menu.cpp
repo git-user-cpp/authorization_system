@@ -50,3 +50,15 @@ void mainMenu(std::string &str, int &choise)
     getline(std::cin, str);
     std::stringstream(str) >> choise;
 }
+
+
+//login menu function
+void loginMenu(std::string &email, std::string &passwd)
+{
+
+    std::cout << "Enter your email: ";
+    std::cin >> email;
+
+    std::cout << "Enter your password:";
+    std::cin >> passwd;
+}
