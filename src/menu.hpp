@@ -32,3 +32,6 @@ void mainMenu(std::string &str, int &choise);
 
 //login menu function
 void loginMenu(std::string &email, std::string &passwd);
+
+//register menu function
+void registerMenu(std::string &email, std::string &passwd);
