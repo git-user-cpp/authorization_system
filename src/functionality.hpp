@@ -25,8 +25,20 @@ SOFTWARE.
 #pragma once
 #include "menu.hpp"
 
-//function to print the table
-void printDbTable(std::string &connection_string);
 
-//function for reading the data
+//function for hashing the password
+unsigned int hashing(std::string &password);
+
+//function for converting the hash code into HEX
+std::string toHex(unsigned int hashCode);
+
+#ifdef test
+    //function to print the table
+    void printDbTable(std::string &connection_string);
+#endif
+
+//function for reading the data from DB
 void logInFun(std::string &connection_string, std::string &email, std::string &passwd);
+
+//function for input the data into the DB
+void registerFun(std::string &connection_string, std::string &email, std::string passwd);
