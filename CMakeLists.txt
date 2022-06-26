@@ -28,5 +28,6 @@ set(CMAKE_CXX_STANDART 11)
 
 add_executable(Authorisation src/main.cpp src/menu.cpp src/functionality.cpp)
 
-#NEED TO FIX -> DOES NOT COMPILING THE PROJECT -> LINKING FAILED
-#target_compile_options(${PROJECT_NAME} PRIVATE -lpqxx -lpq)
+# Linking with pqxx library for PostgreSql
+target_link_libraries(${PROJECT_NAME} pqxx)
+target_link_libraries(${PROJECT_NAME} pq)

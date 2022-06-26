@@ -29,48 +29,32 @@ int main()
     int choise;
     std::vector<std::string> dbcon;
     std::string strForChoise;
-    std::string email, passwd, bufer;
+    std::string email, passwd, dbUserName, dbUserPass;
     std::string delimiter = "|____________________________________________________________|\n\n";
 
     //enum type for better code readability
     enum{ exit, login, registerSys, noPassword };
 
     //The username and password can also be read from the file
-#ifdef test
+
     std::cout   << " ____________________________________________________________" << std::endl
                 << "|                                                            |" << std::endl
                 << "|                   Connect to the database                  |" << std::endl
                 << "|____________________________________________________________|" << std::endl;
-    for(int i = 0; i < 2; i++)
-    {
-        if(i == 0)
-        {
-            std::cout   << " ____________________________________________________________" << std::endl
-                        << "|                                                            |" << std::endl
-                        << "| Enter user's name to connect: ";
-        }
-        else if(i == 1)
-        {
-            std::cout   << " ____________________________________________________________" << std::endl
-                        << "|                                                            |" << std::endl
-                        << "| Enter the password: ";
-        }
-        else
-        {
-            std::cout   << " ____________________________________________________________" << std::endl
-                        << "|                                                            |" << std::endl
-                        << "|              ERROR: Invalid name or password               |" << std::endl
-                        << "|____________________________________________________________|" << std::endl;
-            break;
-        }
 
-        bufer = "";
-        getline(std::cin, bufer);
-        dbcon.push_back(bufer);
-        
-        std::cout << delimiter;
-    }
-#endif
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "|                                                            |" << std::endl
+                << "| Enter user's name to connect: ";
+    getline(std::cin, dbUserName);
+    std::cout   << delimiter;
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "|                                                            |" << std::endl
+                << "| Enter the password: ";
+    getline(std::cin, dbUserPass);
+    std::cout   << delimiter;
+
+    std::string connection_string("host=localhost port=5432 dbname=mydb user=" + dbUserName + " password=" + dbUserPass);
 
     mainMenu(strForChoise, choise);
     std::cout << delimiter;
@@ -84,7 +68,7 @@ int main()
 
             //implement database connection and password hashing (postgresql)
 #ifdef test
-            connectDB(dbcon);
+            printDbTable(connection_string);
 #endif
 
             mainMenu(strForChoise, choise);

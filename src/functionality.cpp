@@ -24,14 +24,9 @@ SOFTWARE.
 
 #include "functionality.hpp"
 
-//implement functions for connection with postgresql
-
-
-//function for DB connection
-void connectDB(const std::vector<std::string> &vec)
+//function to print the table
+void printDbTable(std::string connection_string)
 {
-    std::string connection_string("host=localhost port=5432 dbname=mydb user=" + vec[0] + " password=" + vec[1]);
-
     pqxx::connection con(connection_string.c_str());
     pqxx::work wrk(con);
     pqxx::result res = wrk.exec("SELECT * FROM users;");
