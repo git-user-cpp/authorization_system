@@ -69,22 +69,19 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
     }
     else
     {
-        for(int i = 0; i < res.size(); i++)
+        if(to_string(res[0][2]) == passwd)
         {
-            if(to_string(res[i][2]) == passwd)
-            {
-                std::cout   << " ____________________________________________________________" << std::endl
-                            << "|                                                            |" << std::endl
-                            << "|                     You are logged in!                     |" << std::endl
-                            << "|____________________________________________________________|" << std::endl;
-            }
-            else
-            {
-                std::cout   << " ____________________________________________________________" << std::endl
-                            << "|                                                            |" << std::endl
-                            << "|                    ERROR: wrong password                   |" << std::endl
-                            << "|____________________________________________________________|" << std::endl;
-            }
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                     You are logged in!                     |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
+        }
+        else
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                    ERROR: wrong password                   |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
         }
     }
 }
