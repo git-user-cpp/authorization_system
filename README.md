@@ -1,5 +1,5 @@
 # Authorization system
-:100: This authorization system is implemented in C++ programming language for Linux systems. Created to gain experience with PostgreSql and CMake :100:
+:100: This authorization system is implemented in C++ programming language for Linux systems. Created to gain experience with PostgreSql, CMake and password hashing :100:
 
 ## ⚠️ LICENSE ⚠️
 MIT License
