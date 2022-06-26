@@ -25,7 +25,5 @@ SOFTWARE.
 #pragma once
 #include "menu.hpp"
 
-//declare functions for connection with postgresql
-
-//function for DB connection
-void connectDB(const std::vector<std::string> &vec);
+//function to print the table
+void printDbTable(std::string connection_string);

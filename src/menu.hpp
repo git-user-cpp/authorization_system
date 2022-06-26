@@ -27,9 +27,9 @@ SOFTWARE.
 #include <string>
 #include <sstream>
 #include <vector>
-#define test //uncomment to get the debug info
+#include <pqxx/pqxx> //for connection with PostgreSql
 
-#include <pqxx/pqxx>
+#define test //uncomment to get the debug info
 
 //main menu function
 void mainMenu(std::string &str, int &choise);
