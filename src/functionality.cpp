@@ -85,3 +85,18 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
         }
     }
 }
+
+//function for hashing the password
+unsigned int hashing(std::string &password)
+{
+    unsigned int mult = 4963785;
+    unsigned int hashCode;
+
+    for(int i = 0; i < password.length(); i++)
+    {
+        hashCode = hashCode ^ (password[i]);
+        hashCode *= mult;
+    }
+
+    return hashCode;
+}

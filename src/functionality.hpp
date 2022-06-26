@@ -30,3 +30,6 @@ void printDbTable(std::string &connection_string);
 
 //function for reading the data
 void logInFun(std::string &connection_string, std::string &email, std::string &passwd);
+
+//function for hashing the password
+unsigned int hashing(std::string &password);
