@@ -25,7 +25,7 @@ SOFTWARE.
 #include "functionality.hpp"
 
 //function to print the table
-void printDbTable(std::string connection_string)
+void printDbTable(std::string &connection_string)
 {
     pqxx::connection con(connection_string.c_str());
     pqxx::work wrk(con);
@@ -33,7 +33,10 @@ void printDbTable(std::string connection_string)
 
     if(res.size() < 1)
     {
-        std::cout << "An empty table or an error" << std::endl;
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|                 An empty table or an error                 |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
     }
     else
     {
@@ -47,5 +50,38 @@ void printDbTable(std::string connection_string)
                         << "|    " << res[i][0] << "    |  " << res[i][1] << "  |  " << res[i][2] << std::endl;
         }
         std::cout << "|____________________________________________________________" << std::endl;
+    }
+}
+
+//function for reading the data
+void logInFun(std::string &connection_string, std::string &email, std::string &passwd)
+{
+    pqxx::connection con(connection_string.c_str());
+    pqxx::work wrk(con);
+    pqxx::result res = wrk.exec("SELECT * FROM users WHERE(usr_email='" + email + "');");
+
+    if(res.size() < 1)
+    {
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|              Please, register in the main menu             |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
+    }
+    else
+    {
+        if(to_string(res[0][2]) == passwd)
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                     You are logged in!                     |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
+        }
+        else
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                    ERROR: wrong password                   |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
+        }
     }
 }

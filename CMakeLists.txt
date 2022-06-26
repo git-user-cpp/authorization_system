@@ -24,9 +24,11 @@ cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(Authorisation)
 
-set(CMAKE_CXX_STANDART 11)
-
 add_executable(Authorisation src/main.cpp src/menu.cpp src/functionality.cpp)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+                        CXX_STANDART 11
+                        CXX_STANDART_REQUIRED ON)
 
 # Linking with pqxx library for PostgreSql
 target_link_libraries(${PROJECT_NAME} pqxx)

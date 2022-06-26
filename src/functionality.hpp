@@ -26,4 +26,7 @@ SOFTWARE.
 #include "menu.hpp"
 
 //function to print the table
-void printDbTable(std::string connection_string);
+void printDbTable(std::string &connection_string);
+
+//function for reading the data
+void logInFun(std::string &connection_string, std::string &email, std::string &passwd);
