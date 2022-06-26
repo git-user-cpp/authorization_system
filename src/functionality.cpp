@@ -100,3 +100,18 @@ unsigned int hashing(std::string &password)
 
     return hashCode;
 }
+
+//function for converting the hash code into HEX
+std::string toHex(unsigned int hashCode)
+{
+    std::stringstream hash;
+    hash << std::hex << hashCode;
+
+    std::string hexHashCode = hash.str();
+    for(auto &el : hexHashCode)
+    {
+        el = toupper(el);
+    }
+
+    return hexHashCode;
+}

@@ -33,3 +33,6 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
 
 //function for hashing the password
 unsigned int hashing(std::string &password);
+
+//function for converting the hash code into HEX
+std::string toHex(unsigned int hashCode);

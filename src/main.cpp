@@ -79,6 +79,8 @@ int main()
 
             //implement database connection and password hashing (postgresql)
 
+            // std::cout << toHex(hashing(passwd));
+
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
