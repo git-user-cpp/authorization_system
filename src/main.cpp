@@ -67,9 +67,8 @@ int main()
             loginMenu(email, passwd);
 
             //implement database connection and password hashing (postgresql)
-#ifdef test
-            printDbTable(connection_string);
-#endif
+
+            logInFun(connection_string, email, passwd);
 
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
