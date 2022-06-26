@@ -27,7 +27,6 @@ SOFTWARE.
 int main()
 {
     int choise;
-    std::vector<std::string> dbcon;
     std::string strForChoise;
     std::string email, passwd, dbUserName, dbUserPass;
     std::string delimiter = "|____________________________________________________________|\n\n";
@@ -36,7 +35,7 @@ int main()
     enum{ exit, login, registerSys, noPassword };
 
     //The username and password can also be read from the file
-
+#ifdef test
     std::cout   << " ____________________________________________________________" << std::endl
                 << "|                                                            |" << std::endl
                 << "|                   Connect to the database                  |" << std::endl
@@ -53,6 +52,7 @@ int main()
                 << "| Enter the password: ";
     getline(std::cin, dbUserPass);
     std::cout   << delimiter;
+#endif
 
     std::string connection_string("host=localhost port=5432 dbname=mydb user=" + dbUserName + " password=" + dbUserPass);
 
@@ -66,8 +66,6 @@ int main()
         {
             loginMenu(email, passwd);
 
-            //implement database connection and password hashing (postgresql)
-
             logInFun(connection_string, email, passwd);
 
             mainMenu(strForChoise, choise);
@@ -77,15 +75,15 @@ int main()
         {
             registerMenu(email, passwd);
 
-            //implement database connection and password hashing (postgresql)
-
-            // std::cout << toHex(hashing(passwd));
+            registerFun(connection_string, email, toHex(hashing(passwd)));
 
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
         else if(choise == noPassword)
         {
+            printDbTable(connection_string);
+
             //implement password reset logic
             mainMenu(strForChoise, choise);
             std::cout << delimiter;

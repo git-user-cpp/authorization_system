@@ -24,34 +24,66 @@ SOFTWARE.
 
 #include "functionality.hpp"
 
-//function to print the table
-void printDbTable(std::string &connection_string)
+//function for hashing the password
+unsigned int hashing(std::string &password)
 {
-    pqxx::connection con(connection_string.c_str());
-    pqxx::work wrk(con);
-    pqxx::result res = wrk.exec("SELECT * FROM users;");
+    unsigned int mult = 4963785;
+    unsigned int hashCode;
 
-    if(res.size() < 1)
+    for(int i = 0; i < password.length(); i++)
     {
-        std::cout   << " ____________________________________________________________" << std::endl
-                    << "|                                                            |" << std::endl
-                    << "|                 An empty table or an error                 |" << std::endl
-                    << "|____________________________________________________________|" << std::endl;
+        hashCode = hashCode ^ (password[i]);
+        hashCode *= mult;
     }
-    else
-    {
-        std::cout   << " ____________________________________________________________" << std::endl
-                    << "|                                                            |" << std::endl
-                    << "| User id |      User email       |       User passwd        |" << std::endl;
-        for(int i = 0; i < res.size(); i++)
-        {
-            std::cout   << "|____________________________________________________________|" << std::endl
-                        << "|                                                            " << std::endl
-                        << "|    " << res[i][0] << "    |  " << res[i][1] << "  |  " << res[i][2] << std::endl;
-        }
-        std::cout << "|____________________________________________________________" << std::endl;
-    }
+
+    return hashCode;
 }
+
+//function for converting the hash code into HEX
+std::string toHex(unsigned int hashCode)
+{
+    std::stringstream hash;
+    hash << std::hex << hashCode;
+
+    std::string hexHashCode = hash.str();
+    for(auto &el : hexHashCode)
+    {
+        el = toupper(el);
+    }
+
+    return hexHashCode;
+}
+
+#ifdef test
+    //function to print the table
+    void printDbTable(std::string &connection_string)
+    {
+        pqxx::connection con(connection_string.c_str());
+        pqxx::work wrk(con);
+        pqxx::result res = wrk.exec("SELECT * FROM users;");
+
+        if(res.size() < 1)
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "|                 An empty table or an error                 |" << std::endl
+                        << "|____________________________________________________________|" << std::endl;
+        }
+        else
+        {
+            std::cout   << " ____________________________________________________________" << std::endl
+                        << "|                                                            |" << std::endl
+                        << "| User id |      User email       |       User passwd        |" << std::endl;
+            for(int i = 0; i < res.size(); i++)
+            {
+                std::cout   << "|____________________________________________________________|" << std::endl
+                            << "|                                                            " << std::endl
+                            << "|    " << res[i][0] << "    |  " << res[i][1] << "  |  " << res[i][2] << std::endl;
+            }
+            std::cout << "|____________________________________________________________" << std::endl;
+        }
+    }
+#endif
 
 //function for reading the data
 void logInFun(std::string &connection_string, std::string &email, std::string &passwd)
@@ -86,32 +118,19 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
     }
 }
 
-//function for hashing the password
-unsigned int hashing(std::string &password)
+//FIX HERE!!!
+//function for input the data into the DB
+void registerFun(std::string &connection_string, std::string &email, std::string passwd)
 {
-    unsigned int mult = 4963785;
-    unsigned int hashCode;
+    pqxx::connection con(connection_string.c_str());
+    pqxx::work wrk(con);
 
-    for(int i = 0; i < password.length(); i++)
-    {
-        hashCode = hashCode ^ (password[i]);
-        hashCode *= mult;
-    }
+    pqxx::result res = wrk.exec("SELECT * FROM users;");
+    int counter = res.size() + 1;
 
-    return hashCode;
-}
+    std::string id;
+    std::stringstream(std::to_string(counter)) >> id;
 
-//function for converting the hash code into HEX
-std::string toHex(unsigned int hashCode)
-{
-    std::stringstream hash;
-    hash << std::hex << hashCode;
-
-    std::string hexHashCode = hash.str();
-    for(auto &el : hexHashCode)
-    {
-        el = toupper(el);
-    }
-
-    return hexHashCode;
+    const std::string myQuery("INSERT INTO users(usr_id, usr_email, usr_passwd) VALUES(" + id + ", '" + email + "', '" + passwd + "');");
+    wrk.exec(myQuery); //DOESN'T WORK!!!
 }
