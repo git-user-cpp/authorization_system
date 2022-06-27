@@ -30,7 +30,7 @@ SOFTWARE.
 
 2) 🗂️ Download *all* files and put them in a one directory.
 
-3) Install the latest PostgreSql version and CMake.
+3) :elephant: Install the latest PostgreSql version and CMake.
     ```
     sudo su
     ```
@@ -49,12 +49,12 @@ SOFTWARE.
     service postgresql start
     ```
     
-4) Install the pqxx library to connect PostgreSql with C++.
+4) :inbox_tray: Install the pqxx library to connect PostgreSql with C++.
     ```
     apt-get install libpqxx-dev
     ```
     
-5) Create a new user in postgresql.
+5) :octocat: Create a new PostgreSql user.
     ```
     sudo su - postgres
     ```
@@ -85,7 +85,7 @@ SOFTWARE.
     \du
     ```
     
-6) Create the database and the table in it.
+6) :bar_chart: Create the database and the table in it.
     ```
     CREATE DATABASE mydb WITH OWNER newuser;
     ```
@@ -110,7 +110,7 @@ SOFTWARE.
     SELECT * FROM users;
     ```
     
-7) Exit the postgresql.
+7) :back: Exit the postgres user.
     - Press `Ctrl+d` few times
     
     - Or type few times:
@@ -118,7 +118,7 @@ SOFTWARE.
     exit
     ```
     
-8) Create a `build` directory near `src`.
+8) :open_file_folder: Create `build` directory near `src`.
     ```
     mkdir build
     ```
@@ -126,7 +126,7 @@ SOFTWARE.
     cd build
     ```
     
-9) Create a login.txt file in `build` directory and write the database username and password in separate lines
+9) :spiral_notepad: Create a login.txt file in `build` directory and write the database username and password in separate lines
     - Create:
     ```
     touch login.txt
@@ -147,7 +147,7 @@ SOFTWARE.
     
     - Exit the vim: press `esc` few times then type `:wq` and after that press `Enter`.
     
-10) ⚒️ Build the program with cmake in the `build` directory.
+10) ⚒️ Build the program with CMake in the `build` directory.
     ```
     cmake --build .
     ```
@@ -170,7 +170,7 @@ SOFTWARE.
     
 13) 👷 Select the desired function by pressing **1** or **2** or **3** + **Enter**. If you want to close the app, press **0** + **Enter** in main menu.
 
-14) After using the program you can turn off postgresql.
+14) :no_entry: After using the program you can turn off PostgreSql.
     ```
     sudo su
     ```
