@@ -122,6 +122,8 @@ SOFTWARE.
     ```
     mkdir build
     ```
+    
+    - Go to the `build` directory
     ```
     cd build
     ```
