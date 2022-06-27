@@ -55,7 +55,6 @@ void mainMenu(std::string &str, int &choise)
 //login menu function
 void loginMenu(std::string &email, std::string &passwd)
 {
-
     std::cout   << " ____________________________________________________________" << std::endl
                 << "| Enter your email: ";
     getline(std::cin, email);
@@ -80,12 +79,12 @@ ifNotSuccess:
     std::cout   << "|____________________________________________________________" << std::endl;
 
     std::cout   << " ____________________________________________________________" << std::endl
-                << "| Enter new password: ";
+                << "| Enter the password: ";
     getline(std::cin, passwd);
     std::cout   << "|____________________________________________________________" << std::endl;
 
     std::cout   << " ____________________________________________________________" << std::endl
-                << "| Confirm new password: ";
+                << "| Confirm the password: ";
     getline(std::cin, confirm);
     std::cout   << "|____________________________________________________________" << std::endl;
 
@@ -102,6 +101,47 @@ ifNotSuccess:
                     << "|                                                            |" << std::endl
                     << "|                      Please try again                      |" << std::endl
                     << "|____________________________________________________________|" << std::endl;
-        goto ifNotSuccess;
+        
+        goto ifNotSuccess; //line 74
+    }
+}
+
+//recover menu function
+void recoverMenu(std::string &email, std::string &passwd)
+{
+    std::string confirm;
+
+ifNotSuccess:
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter your email: ";
+    getline(std::cin, email);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Enter new password: ";
+    getline(std::cin, passwd);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "| Confirm new password: ";
+    getline(std::cin, confirm);
+    std::cout   << "|____________________________________________________________" << std::endl;
+
+    if(passwd == confirm)
+    {
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|           The password is successfully recovered!          |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
+    }
+    else
+    {
+        std::cout   << " ____________________________________________________________" << std::endl
+                    << "|                                                            |" << std::endl
+                    << "|                      Please try again                      |" << std::endl
+                    << "|____________________________________________________________|" << std::endl;
+        
+        goto ifNotSuccess; //line 114
     }
 }

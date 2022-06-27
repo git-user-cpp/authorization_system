@@ -42,3 +42,6 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
 
 //function for input the data into the DB
 void registerFun(std::string &connection_string, std::string &email, std::string passwd);
+
+//function for recovering passwords
+void recoverFun(std::string &connection_string, std::string &email, std::string passwd);

@@ -30,6 +30,7 @@ unsigned int hashing(std::string &password)
     unsigned int mult = 4963785;
     unsigned int hashCode;
 
+    //hashing
     for(int i = 0; i < password.length(); i++)
     {
         hashCode = hashCode ^ (password[i]);
@@ -55,7 +56,7 @@ std::string toHex(unsigned int hashCode)
 }
 
 #ifdef test
-    //function to print the table
+    //function to print the table in the testing mode
     void printDbTable(std::string &connection_string)
     {
         pqxx::connection con(connection_string.c_str());
@@ -90,6 +91,8 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
 {
     pqxx::connection con(connection_string.c_str());
     pqxx::work wrk(con);
+    
+    //check if the user is in the database
     pqxx::result res = wrk.exec("SELECT * FROM users WHERE(usr_email='" + email + "');");
 
     if(res.size() < 1)
@@ -101,6 +104,7 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
     }
     else
     {
+        //password verification
         if(to_string(res[0][2]) == passwd)
         {
             std::cout   << " ____________________________________________________________" << std::endl
@@ -118,7 +122,6 @@ void logInFun(std::string &connection_string, std::string &email, std::string &p
     }
 }
 
-//FIX HERE!!!
 //function for input the data into the DB
 void registerFun(std::string &connection_string, std::string &email, std::string passwd)
 {
@@ -126,17 +129,33 @@ void registerFun(std::string &connection_string, std::string &email, std::string
     pqxx::work wrk(con);
 
     pqxx::result res = wrk.exec("SELECT * FROM users;");
-    int counter = res.size() + 1;
+    int counter = res.size() + 1;   //setting the ID
 
     std::string id;
-    std::stringstream(std::to_string(counter)) >> id;
+    std::stringstream(std::to_string(counter)) >> id;   //converting the ID to a string type
 
     //writing into the table
     wrk.exec("INSERT INTO users(usr_id, usr_email, usr_passwd) VALUES(" + id + ", '" + email + "', '" + passwd + "');");
-    wrk.commit();
+    wrk.commit();   //saving changes to the database
 
     std::cout   << " ____________________________________________________________" << std::endl
                 << "|                                                            |" << std::endl
-                << "|             Your password: " << passwd                        << std::endl
+                << "| Your password, please save it: " << passwd                    << std::endl
+                << "|____________________________________________________________|" << std::endl;
+}
+
+//function for recovering passwords
+void recoverFun(std::string &connection_string, std::string &email, std::string passwd)
+{
+    pqxx::connection con(connection_string.c_str());
+    pqxx::work wrk(con);
+
+    //changing the password in the database
+    wrk.exec("UPDATE users SET usr_passwd = '" + passwd + "' WHERE(usr_email = '" + email + "');");
+    wrk.commit();   //saving changes to the database
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "|                                                            |" << std::endl
+                << "| Your password, please save it: " << passwd                    << std::endl
                 << "|____________________________________________________________|" << std::endl;
 }

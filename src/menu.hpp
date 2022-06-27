@@ -27,7 +27,7 @@ SOFTWARE.
 #include <string>
 #include <sstream>
 #include <vector>
-#include <pqxx/pqxx> //for connection with PostgreSql
+#include <pqxx/pqxx> //to connect to PostgreSql
 
 #define test //uncomment to get the debug info
 
@@ -39,3 +39,6 @@ void loginMenu(std::string &email, std::string &passwd);
 
 //register menu function
 void registerMenu(std::string &email, std::string &passwd);
+
+//recover menu function
+void recoverMenu(std::string &email, std::string &passwd);
