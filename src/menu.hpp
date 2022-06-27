@@ -26,10 +26,11 @@ SOFTWARE.
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <vector>
 #include <pqxx/pqxx> //to connect to PostgreSql
 
-#define test //uncomment to get the debug info
+// #define test //uncomment to get the debug info
 
 //main menu function
 void mainMenu(std::string &str, int &choise);

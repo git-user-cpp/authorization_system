@@ -29,7 +29,12 @@ int main()
     int choise;
     std::string strForChoise;
 
-    std::string email, passwd, dbUserName, dbUserPass;
+    std::string email, passwd;
+
+//variables for testing mode
+#ifdef test
+    std::string dbUserName, dbUserPass;
+#endif
 
     std::string delimiter = "|____________________________________________________________|\n\n";
 
@@ -37,6 +42,7 @@ int main()
     enum{ exit, login, registerSys, noPassword };
 
     //The username and password can also be read from the file
+    //TESTING MODE MENU
 #ifdef test
     std::cout   << " ____________________________________________________________" << std::endl
                 << "|                                                            |" << std::endl
@@ -56,8 +62,40 @@ int main()
     std::cout   << delimiter;
 #endif
 
-    //string to connect to the database
+//reading login data in user mode
+#ifndef test
+    std::vector<std::string> log;
+    std::fstream input;
+    input.open("login.txt", std::ios::in);
+
+    if(!input)
+    {
+        std::cout << "Can't open the login file" << std::endl;
+        return -1;
+    }
+    else
+    {
+        std::string bufer;
+
+        //reading the data
+        while(!input.eof())
+        {
+            getline(input, bufer);
+            log.push_back(bufer);
+        }
+        log.shrink_to_fit();
+
+        input.close();
+    }
+
+    //string to connect to the database in user mode
+    std::string connection_string("host=localhost port=5432 dbname=mydb user=" + log[0] + " password=" + log[1]);
+#endif
+
+//string to connect to the database in testing mode
+#ifdef test
     std::string connection_string("host=localhost port=5432 dbname=mydb user=" + dbUserName + " password=" + dbUserPass);
+#endif
 
 //outputting table in the test mode
 #ifdef test
