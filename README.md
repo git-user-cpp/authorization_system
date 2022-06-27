@@ -1,4 +1,4 @@
-# Authorization system
+# Authorization system v1.0.0
 :100: This authorization system is implemented in C++ programming language for Linux systems. Created to gain experience with PostgreSql, CMake and password hashing :100:
 
 ## ⚠️ LICENSE ⚠️
