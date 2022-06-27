@@ -28,7 +28,9 @@ int main()
 {
     int choise;
     std::string strForChoise;
+
     std::string email, passwd, dbUserName, dbUserPass;
+
     std::string delimiter = "|____________________________________________________________|\n\n";
 
     //enum type for better code readability
@@ -54,7 +56,13 @@ int main()
     std::cout   << delimiter;
 #endif
 
+    //string to connect to the database
     std::string connection_string("host=localhost port=5432 dbname=mydb user=" + dbUserName + " password=" + dbUserPass);
+
+//outputting table in the test mode
+#ifdef test
+    printDbTable(connection_string);
+#endif
 
     mainMenu(strForChoise, choise);
     std::cout << delimiter;
@@ -62,6 +70,7 @@ int main()
     //all the options
     while(choise > exit)
     {
+        //login functionality
         if(choise == login)
         {
             loginMenu(email, passwd);
@@ -71,6 +80,7 @@ int main()
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
+        //register functionality
         else if(choise == registerSys)
         {
             registerMenu(email, passwd);
@@ -80,11 +90,13 @@ int main()
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
+        //passwword recovering functionality
         else if(choise == noPassword)
         {
-            printDbTable(connection_string);
+            recoverMenu(email, passwd);
 
-            //implement password reset logic
+            recoverFun(connection_string, email, toHex(hashing(passwd)));
+
             mainMenu(strForChoise, choise);
             std::cout << delimiter;
         }
