@@ -172,7 +172,7 @@ SOFTWARE.
     
 13) 👷 Select the desired function by pressing **1** or **2** or **3** + **Enter**. If you want to close the app, press **0** + **Enter** in main menu.
 
-14) :no_entry: After using the program you can turn off PostgreSql.
+14) :no_entry: After using the program you can disable PostgreSql.
     ```
     sudo su
     ```
