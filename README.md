@@ -27,22 +27,153 @@ SOFTWARE.
 ## 💻 How to use this app 💻
 
 1) ⚠️ **The application is designed for Linux, so avoid using other systems or remake the program to avoid bugs.** ⚠️
+
 2) 🗂️ Download *all* files and put them in a one directory.
-3)  ⚒️ Build the program with cmake.
+
+3) Install the latest PostgreSql version and CMake.
     ```
-    cmake --build . --config custom
+    sudo su
     ```
-4) 💥 Then, in your directory will appear file *"Authorisation"*.
+    ```
+    apt-get update
+    ```
+    ```
+    apt-get install postgresql
+    ```
+    ```
+    apt-get install cmake
+    ```
+    
+    - To turn on the PostgreSql
+    ```
+    service postgresql start
+    ```
+    
+4) Install the pqxx library to connect PostgreSql with C++.
+    ```
+    apt-get install libpqxx-dev
+    ```
+    
+5) Create a new user in postgresql.
+    ```
+    sudo su - postgres
+    ```
+    
+    - Then type:
+    ```
+    psql
+    ```
+    
+    - First, set a password for the superuser:
+    ```
+    ALTER USER postgres WITH PASSWORD 'your password';
+    ```
+    
+    - Create a new user:
+    ```
+    CREATE USER newuser;
+    ```
+    ```
+    ALTER USER newuser WITH PASSWORD 'your new user password';
+    ```
+    ```
+    ALTER USER newuser WITH SUPERUSER;
+    ```
+    
+    - To check all users:
+    ```
+    \du
+    ```
+    
+6) Create the database and the table in it.
+    ```
+    CREATE DATABASE mydb WITH OWNER newuser;
+    ```
+    
+    - Connect to the DB:
+    ```
+    \c mydb
+    ```
+    
+    - Create the table:
+    ```
+    CREATE TABLE users(usr_id INT PRIMARY KEY, usr_email VARCHAR(240) NOT NULL, usr_passwd VARCHAR(240) NOT NULL);
+    ```
+    
+    - Command to check all databases:
+    ```
+    \l+
+    ```
+    
+    - Query to print the table:
+    ```
+    SELECT * FROM users;
+    ```
+    
+7) Exit the postgresql.
+    - Press `Ctrl+d` few times
+    
+    - Or type few times:
+    ```
+    exit
+    ```
+    
+8) Create a `build` directory near `src`.
+    ```
+    mkdir build
+    ```
+    ```
+    cd build
+    ```
+    
+9) Create a login.txt file in `build` directory and write the database username and password in separate lines
+    - Create:
+    ```
+    touch login.txt
+    ```
+    
+    - Write via Vim:
+    ```
+    vim login.txt
+    ```
+    
+    - Press `i` to insert the data into file.
+    
+    - This is what it should look like:
+    ```
+    newuser
+    newuserpasswd
+    ```
+    
+    - Exit the vim: press `esc` few times then type `:wq` and after that press `Enter`.
+    
+10) ⚒️ Build the program with cmake in the `build` directory.
+    ```
+    cmake --build .
+    ```
+    
+11) 💥 Then, in current directory will appear file *"Authorisation"*.
     - If you want to check files in current directory
     ```
     ls -alR
     ```
+    
     - Or
     ```
     ls -a -l -R
     ```
-5) 🌠 Execute the program with command:
+    
+12) 🌠 Execute the program with command:
     ```
     ./Authorisation
     ```
-6) 👷 Select the desired function by pressing **1** or **2** or **3** + **Enter**. If you want to close the app, press **0** + **Enter** in main menu.
+    
+13) 👷 Select the desired function by pressing **1** or **2** or **3** + **Enter**. If you want to close the app, press **0** + **Enter** in main menu.
+
+14) After using the program you can turn off postgresql.
+    ```
+    sudo su
+    ```
+    ```
+    sudo service postgresql stop
+    ```
