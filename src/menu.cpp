@@ -62,7 +62,7 @@ void loginMenu(std::string &email, std::string &passwd)
     std::cout   << "|____________________________________________________________" << std::endl;
 
     std::cout   << " ____________________________________________________________" << std::endl
-                << "| Enter your password:";
+                << "| Enter your password: ";
     getline(std::cin, passwd);
     std::cout   << "|____________________________________________________________" << std::endl;
 }
@@ -80,12 +80,12 @@ ifNotSuccess:
     std::cout   << "|____________________________________________________________" << std::endl;
 
     std::cout   << " ____________________________________________________________" << std::endl
-                << "| Enter new password:";
+                << "| Enter new password: ";
     getline(std::cin, passwd);
     std::cout   << "|____________________________________________________________" << std::endl;
 
     std::cout   << " ____________________________________________________________" << std::endl
-                << "| Confirm new password:";
+                << "| Confirm new password: ";
     getline(std::cin, confirm);
     std::cout   << "|____________________________________________________________" << std::endl;
 

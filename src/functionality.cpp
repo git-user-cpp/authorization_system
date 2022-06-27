@@ -131,6 +131,12 @@ void registerFun(std::string &connection_string, std::string &email, std::string
     std::string id;
     std::stringstream(std::to_string(counter)) >> id;
 
-    const std::string myQuery("INSERT INTO users(usr_id, usr_email, usr_passwd) VALUES(" + id + ", '" + email + "', '" + passwd + "');");
-    wrk.exec(myQuery); //DOESN'T WORK!!!
+    //writing into the table
+    wrk.exec("INSERT INTO users(usr_id, usr_email, usr_passwd) VALUES(" + id + ", '" + email + "', '" + passwd + "');");
+    wrk.commit();
+
+    std::cout   << " ____________________________________________________________" << std::endl
+                << "|                                                            |" << std::endl
+                << "|             Your password: " << passwd                        << std::endl
+                << "|____________________________________________________________|" << std::endl;
 }
