@@ -177,5 +177,5 @@ SOFTWARE.
     sudo su
     ```
     ```
-    sudo service postgresql stop
+    service postgresql stop
     ```
